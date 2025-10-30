@@ -1,60 +1,125 @@
-PowerShell Learning Path
+# PowerShell Learning Path
 
-This repository is a personal PowerShell learning track. Each folder contains one standalone tool. The folders are ordered from basic to advanced. The goal is to show growth from simple console output to a packaged support utility that can be turned into an .exe.
+This repository is a personal PowerShell learning track.
 
-Folder overview
+Each folder contains one standalone tool.
+The folders are ordered from basic to advanced.
+The goal is to show progress from simple console output to a packaged support utility that can be turned into an `.exe`.
 
-01-basics
-system-info.ps1
-Print basic system information such as PowerShell version, computer name, current user, and admin status.
+---
 
-02-pipeline
-top-processes.ps1
-List running processes, sort by CPU usage, show the top results, and write them to a file. Focus on pipeline usage and object filtering.
+## Folder Overview
 
-03-filesystem
-inventory-files.ps1
-Ask for a folder path, verify it, scan all files, calculate file sizes, and export the result to CSV. Focus on input handling and file system access.
+### `01-basics/`
 
-04-logic
-admin-menu.ps1
-Interactive text menu in a loop. Show top processes, show disk free space, or exit. Focus on loops, switch, and basic console UX.
+**Tool:** `system-info.ps1`
+**Purpose:** Print basic system information such as PowerShell version, computer name, current user, date/time, and admin status.
+**Focus:** Variables and output.
 
-05-functions
-audit-and-disk.ps1
-Define reusable functions with parameters (for example find large files and report disk space). Show how to document functions and return structured data.
+---
 
-06-error-handling
-copy-safe.ps1
-Copy data from source to destination with validation, try/catch, and error logging. Focus on reliability and safe file operations.
+### `02-pipeline/`
 
-07-report-tool
-system-report.ps1
-Collect a full system report (OS info, uptime, process info, disk status) and write it to a single text file for later analysis.
+**Tool:** `top-processes.ps1`
+**Purpose:** List running processes, sort them by CPU usage, show the top results, and write them to a file.
+**Focus:** Pipeline (`|`), sorting, filtering, exporting.
 
-08-backup-tool
-backup-run.ps1
-Run a timestamped backup job with parameters, runtime measurement, and logging of results. Moves toward real admin automation.
+---
 
-09-health-monitor
-monitor-console.ps1
-Live console tool. Repeatedly show top CPU processes, check disk space with color warnings, and compare backup source vs target. Simulates a lightweight monitoring console.
+### `03-filesystem/`
 
-10-final-program-exe
-quick-support.ps1
-Generate a support dump for troubleshooting (system info, network status, service status), save it to a file, and display a message box. This script is intended to be packaged as an .exe for end users.
+**Tool:** `inventory-files.ps1`
+**Purpose:** Ask for a folder path, verify it, scan all files (recursive), calculate file sizes, and export the result to CSV.
+**Focus:** User input, file system access, calculated properties.
 
-Usage
+---
 
-Open any folder. Run the .ps1 file inside it in PowerShell. Each tool is self-contained and does not depend on other folders.
+### `04-logic/`
 
-Goal
+**Tool:** `admin-menu.ps1`
+**Purpose:** Provide an interactive console menu in a loop. Options include: show top processes, show disk free space, or exit.
+**Focus:** Loops, `switch`, basic console UX.
+
+---
+
+### `05-functions/`
+
+**Tool:** `audit-and-disk.ps1`
+**Purpose:** Define and call reusable functions with parameters (for example: find large files, report disk space). Include comment-based help.
+**Focus:** Functions, parameters, clean output objects.
+
+---
+
+### `06-error-handling/`
+
+**Tool:** `copy-safe.ps1`
+**Purpose:** Copy data from source to destination with validation, structured error handling (`try` / `catch`), and error logging to file.
+**Focus:** Reliability, safe file operations, logging.
+
+---
+
+### `07-report-tool/`
+
+**Tool:** `system-report.ps1`
+**Purpose:** Collect a full system report (OS info, uptime, total processes, top CPU processes, drive status) and write it to a text file for later analysis.
+**Focus:** System inspection and formatted reporting.
+
+---
+
+### `08-backup-tool/`
+
+**Tool:** `backup-run.ps1`
+**Purpose:** Run a backup job with parameters (`-Source`, `-Dest`), measure runtime, copy files, and log results (timestamps, duration, file counts).
+**Focus:** Script parameters, automation, job logging.
+
+---
+
+### `09-health-monitor/`
+
+**Tool:** `monitor-console.ps1`
+**Purpose:** Run a live interactive monitoring console. Features:
+
+* show top CPU processes in a loop
+* check drive free space with color warnings
+* compare source vs backup folders
+  **Focus:** Realtime output, colored console messages, admin-style monitoring.
+
+---
+
+### `10-final-program-exe/`
+
+**Tool:** `quick-support.ps1`
+**Purpose:** Generate a support dump for troubleshooting (system info, network status, service status). Save it to `support-dump.txt` and display a message box.
+This script is intended to be packaged as an `.exe` for end users using `ps2exe`.
+**Focus:** User-facing output and packaging.
+
+---
+
+## Usage
+
+1. Open any folder.
+2. Run the `.ps1` file in PowerShell, for example:
+
+   ```powershell
+   .\system-info.ps1
+   ```
+
+   or
+
+   ```powershell
+   .\backup-run.ps1 -Source "C:\Data" -Dest "D:\Backup"
+   ```
+
+Each tool is self-contained. No imports from other folders.
+
+---
+
+## Goals
 
 By the end of this repo it should be possible to:
 
-* read and write system state
-* work with files and folders safely
-* build interactive console tools
-* produce support output for non-technical users
-* package a PowerShell script as an .exe
-
+* Read and report system state
+* Work with files and folders safely
+* Build interactive console tools
+* Produce support-style output for non-technical users
+* Package a PowerShell script as an `.exe`
