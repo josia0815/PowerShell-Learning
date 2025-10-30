@@ -1,0 +1,9 @@
+
+Name       CPU    Id
+----       ---    --
+ONENOTE 778.03 16640
+brave   548.12 22380
+brave   451.23 18448
+brave   389.39  5508
+GHelper 264.81  2956
+
