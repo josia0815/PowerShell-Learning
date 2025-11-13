@@ -8,16 +8,31 @@
     Letzte Änderung: 6.11.2025 (Changelog: Initiale Version)
 #>
 
-$src = Read-Host "Quellordner Pfad"
+#Prerequisites
+Add-Type -AssemblyName System.Windows.Forms
+
+#Shows a Folder Picker System Dialog
+$folderselection = New-Object System.Windows.Forms.OpenFileDialog -Property @{  
+InitialDirectory = [Environment]::GetFolderPath('Desktop')  
+CheckFileExists = 0    
+FileName = "Choose Folder"  
+}  
+$folderselection.ShowDialog()
+
+#Tests if the selected folder path is found and valid
+$src = Split-Path -Parent $folderselection.FileName 
 if(-not (Test-Path $src)){
     Write-Host "Pfad nicht gefunden: $src"
     exit 
 }
 
+#actual function to get all items and their size
 $files = Get-ChildItem -Path $src -File -Recurse | 
     Select-Object FullName, 
         @{Name="SizeMB";Expression={[math]::Round($_.Length/1MB,2)}}
 
-$filepath = "filelist.csv"        
+#output 
+$filename = "FileList.csv"
+$filepath = Join-Path $PSScriptRoot $filename        
 $files | Export-Csv -NoTypeInformation -Path $filepath
-Write-Host "Dateiliste geschrieben: $filepath"
+Write-Host "Dateiliste geschrieben: $filename"
